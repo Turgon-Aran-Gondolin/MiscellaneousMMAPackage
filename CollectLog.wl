@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-BeginPackage["CollectLog`"];
+BeginPackage["MMMAP`CollectLog`"];
 
 
 CollectLog::usage=
@@ -16,7 +16,7 @@ Begin["`Private`"]
 CollectLog[expr_]:=Module[{rule1,rule2,a,b,x},rule1=Log[a_]+Log[b_]->Log[a*b];
 rule2=x_*Log[a_]->Log[a^x];
 (expr/.rule1)/.rule2/.rule1/.rule2];
-CollectAllLog[expr_]:=Nest[collectLog,expr,Length[expr]]/.Log[o_]:>FullSimplify@Log[o];
+CollectAllLog[expr_]:=Nest[CollectLog,expr,Length[expr]]/.Log[o_]:>FullSimplify@Log[o];
 
 
 End[]
