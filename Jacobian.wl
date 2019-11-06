@@ -2,12 +2,12 @@
 
 BeginPackage["MMMAP`Jacobian`"];
 
+JacobianMatrix::usage="JacobianMatrix[f_List?VectorQ, x_List]";
+JacobianDeterminant::usage="JacobianDeterminant[f_List?VectorQ, x_List]";
+
 
 Begin["`Private`"]
 
-
-JacobianMatrix::usage="JacobianMatrix[f_List?VectorQ, x_List]";
-JacobianDeterminant::usage="JacobianDeterminant[f_List?VectorQ, x_List]";
 
 
 JacobianMatrix[f_List?VectorQ, x_List] :=
