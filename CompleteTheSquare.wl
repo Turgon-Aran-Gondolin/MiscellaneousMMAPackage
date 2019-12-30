@@ -13,9 +13,11 @@ Begin["`Private`"]
 
 Unprotect[Dot];
 ClearAttributes[Dot,Orderless];
+CompleteTheSquare[expr_?(Length[#]==1&), Vars : {__Symbol}] :=CompleteTheSquare[expr[[1]],Vars];
 CompleteTheSquare[expr_] := CompleteTheSquare[expr, Variables[expr]]
-CompleteTheSquare[expr_, Vars_Symbol] := CompleteTheSquare[expr, {Vars}]
-CompleteTheSquare[expr_, Vars : {__Symbol}] := Module[{array, A, B, Cc, s, vars, sVars},
+CompleteTheSquare[expr_, Vars_Symbol] := CompleteTheSquare[expr, {Vars}];
+
+CompleteTheSquare[expr_?(!ListQ[#]&), Vars : {__Symbol}] := Module[{array, A, B, Cc, s, vars, sVars},
   vars = Intersection[Vars, Variables[expr]];
   Check[array = CoefficientArrays[expr, vars], Return[expr], CoefficientArrays::poly];
   If[Length[array] != 3, Message[CompleteTheSquare::notquad, vars]; Return[expr]];
